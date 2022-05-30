@@ -1,6 +1,6 @@
 #!/bin/bash
 ###################################
-Backup to mount directory
+# Backup to mount directory
 ####################################
 
 
