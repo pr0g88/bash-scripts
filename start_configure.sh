@@ -9,8 +9,11 @@ read ns
 echo -n "Enter the full domain name: "
 read domain
 
-echo "nameserver $ns" > test.txt
-echo "search $domain" >> test.txt
+cat > /etc/resolv.conf <<EOF
+nameserver $ns
+search $domain
+
+EOF
 
 # Network adapter
 
@@ -26,7 +29,7 @@ read gate
 
 int=`ls /sys/class/net/ | xargs | cut -d ' ' -f 1` 
 
-echo "
+cat > /etc/network/interfaces <<EOF
 source /etc/network/interfaces.d/*
 
 auto lo
@@ -37,10 +40,13 @@ iface $int inet static
         address $addr
         netmask $nmask
         gateway $gate
-
-" > net.txt
+EOF
 
 systemctl restart networking.service
+
+# Other
+timedatectl set-timezone Europe/Moscow
+apt install -y vim
 
 echo "*** CONFIGURATION CHECK ... ###"
 echo "cat /etc/resolv.conf"
