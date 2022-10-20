@@ -43,6 +43,8 @@ iface $int inet static
 systemctl restart networking.service
 
 echo "*** CONFIGURATION CHECK ... ###"
+echo "cat /etc/resolv.conf"
 cat /etc/resolv.conf
+echo "CHECK NETWORK ..."
 ip a | grep $int
 ping -c 4 $gate
