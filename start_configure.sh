@@ -45,8 +45,8 @@ EOF
 systemctl restart networking.service
 
 # Other
-timedatectl set-timezone Europe/Moscow
-apt install -y vim
+#timedatectl set-timezone Europe/Moscow
+#apt install -y vim
 
 echo "*** CONFIGURATION CHECK ... ###"
 echo "cat /etc/resolv.conf"
