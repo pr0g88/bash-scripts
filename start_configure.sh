@@ -1,7 +1,16 @@
 #!/bin/bash
 
-# Resolv
+# Start config
+timedatectl set-timezone Europe/Moscow
 
+echo "Install vim"
+apt install -y vim sudo
+
+echo -n "Enter user to add sudo group ..."
+read usersudo
+usermod -aG sudo $usersudo
+
+# Resolv
 echo "Configure resolv.conf ..."
 echo -n "Enter nameserver: "
 read ns
@@ -16,7 +25,6 @@ search $domain
 EOF
 
 # Network adapter
-
 echo "Configure network ..."
 echo -n "Enter ip address: "
 read addr
@@ -44,13 +52,9 @@ EOF
 
 systemctl restart networking.service
 
-# Other
-#timedatectl set-timezone Europe/Moscow
-#apt install -y vim
 
 echo "*** CONFIGURATION CHECK ... ###"
 echo "cat /etc/resolv.conf"
 cat /etc/resolv.conf
 echo "CHECK NETWORK ..."
 ip a | grep $int
-ping -c 4 $gate
