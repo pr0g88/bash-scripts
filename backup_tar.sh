@@ -3,17 +3,13 @@
 # Backup to mount directory
 ####################################
 
-
 # What to backup.
 
 backup_files="/home /var/spool/mail /etc /root /boot /opt"
 
-
 # Where to backup to.
 
 dest="/mnt/backup"
-
-
 
 # Create archive filename.
 
@@ -22,7 +18,6 @@ day=$(date +%A)
 hostname=$(hostname -s)
 
 archive_file="$hostname-$day.tgz"
-
 
 
 # Print start status.
