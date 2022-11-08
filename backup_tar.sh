@@ -31,4 +31,3 @@ ls -lh $dest
 # Restore backup to directory
 # Example
 # tar -xzvf /mnt/backup/host-Monday.tgz -C /tmp etc/hosts
-
